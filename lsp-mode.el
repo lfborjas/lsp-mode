@@ -3731,7 +3731,7 @@ disappearing, unset all the variables related to it."
                                        (tooltipSupport . t)))
                       (hover . ((contentFormat . ["markdown" "plaintext"])
                                 (dynamicRegistration . t)))
-                      ,@(when (not lsp-enable-folding)
+                      ,@(when lsp-enable-folding
                           `((foldingRange . ((dynamicRegistration . t)
                                              ,@(when lsp-folding-range-limit
                                                  `((rangeLimit . ,lsp-folding-range-limit)))
@@ -3745,7 +3745,7 @@ disappearing, unset all the variables related to it."
                                              (versionSupport . t)))
                       (linkedEditingRange . ((dynamicRegistration . t)))))
      (window . ((workDoneProgress . t)
-                (showMessage . ((messageActionItem . ((additionalPropertiesSupport . :json-false))
+                (showMessage . ((messageActionItem . ((additionalPropertiesSupport . :json-false)))))
                 (showDocument . ((support . t))))))
    (assq-delete-all 'window custom-capabilities)))
 
