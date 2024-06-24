@@ -3731,7 +3731,7 @@ disappearing, unset all the variables related to it."
                                        (tooltipSupport . t)))
                       (hover . ((contentFormat . ["markdown" "plaintext"])
                                 (dynamicRegistration . t)))
-                      ,@(when lsp-enable-folding
+                      ,@(when (not lsp-enable-folding)
                           `((foldingRange . ((dynamicRegistration . t)
                                              ,@(when lsp-folding-range-limit
                                                  `((rangeLimit . ,lsp-folding-range-limit)))
@@ -3747,7 +3747,7 @@ disappearing, unset all the variables related to it."
      (window . ((workDoneProgress . t)
                 (showMessage . ((messageActionItem . ((additionalPropertiesSupport . :json-false))
                 (showDocument . ((support . t))))))
-   custom-capabilities))
+   (assq-delete-all 'window custom-capabilities)))
 
 (defun lsp-find-roots-for-workspace (workspace session)
   "Get all roots for the WORKSPACE."
